@@ -1,0 +1,10 @@
+c:\users\adam\documents\visual studio 2013\Projects\MiniLens\MiniLens\bin\Debug\MiniLens.exe.config
+c:\users\adam\documents\visual studio 2013\Projects\MiniLens\MiniLens\bin\Debug\MiniLens.exe
+c:\users\adam\documents\visual studio 2013\Projects\MiniLens\MiniLens\bin\Debug\MiniLens.pdb
+c:\users\adam\documents\visual studio 2013\Projects\MiniLens\MiniLens\obj\Debug\MiniLens.csprojResolveAssemblyReference.cache
+c:\users\adam\documents\visual studio 2013\Projects\MiniLens\MiniLens\obj\Debug\MiniLens.Properties.Resources.resources
+c:\users\adam\documents\visual studio 2013\Projects\MiniLens\MiniLens\obj\Debug\MiniLens.csproj.GenerateResource.Cache
+c:\users\adam\documents\visual studio 2013\Projects\MiniLens\MiniLens\obj\Debug\MiniLens.exe
+c:\users\adam\documents\visual studio 2013\Projects\MiniLens\MiniLens\obj\Debug\MiniLens.pdb
+c:\users\adam\documents\visual studio 2013\Projects\MiniLens\MiniLens\obj\Debug\MiniLens.FormMain.resources
+c:\users\adam\documents\visual studio 2013\Projects\MiniLens\MiniLens\obj\Debug\MiniLens.FormOptions.resources
