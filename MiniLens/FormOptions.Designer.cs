@@ -34,13 +34,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cb_Format = new System.Windows.Forms.ComboBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.cb_Window = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tb_WinHot = new System.Windows.Forms.TextBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.cb_Area = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tb_AreaHot = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cb_FullScreen = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tb_FullHot = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -85,13 +85,13 @@
             // 
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.cb_Format);
-            this.groupBox1.Controls.Add(this.checkBox3);
+            this.groupBox1.Controls.Add(this.cb_Window);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.tb_WinHot);
-            this.groupBox1.Controls.Add(this.checkBox2);
+            this.groupBox1.Controls.Add(this.cb_Area);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.tb_AreaHot);
-            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.cb_FullScreen);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.tb_FullHot);
             this.groupBox1.Controls.Add(this.tb_Directory);
@@ -124,15 +124,15 @@
             this.cb_Format.Size = new System.Drawing.Size(100, 21);
             this.cb_Format.TabIndex = 12;
             // 
-            // checkBox3
+            // cb_Window
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(224, 123);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(71, 17);
-            this.checkBox3.TabIndex = 11;
-            this.checkBox3.Text = "Enabled?";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.cb_Window.AutoSize = true;
+            this.cb_Window.Location = new System.Drawing.Point(224, 123);
+            this.cb_Window.Name = "cb_Window";
+            this.cb_Window.Size = new System.Drawing.Size(71, 17);
+            this.cb_Window.TabIndex = 11;
+            this.cb_Window.Text = "Enabled?";
+            this.cb_Window.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -149,16 +149,18 @@
             this.tb_WinHot.Name = "tb_WinHot";
             this.tb_WinHot.Size = new System.Drawing.Size(100, 20);
             this.tb_WinHot.TabIndex = 9;
+            this.tb_WinHot.Enter += new System.EventHandler(this.tb_WinHot_Enter);
+            this.tb_WinHot.Leave += new System.EventHandler(this.tb_WinHot_Leave);
             // 
-            // checkBox2
+            // cb_Area
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(224, 97);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(71, 17);
-            this.checkBox2.TabIndex = 8;
-            this.checkBox2.Text = "Enabled?";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.cb_Area.AutoSize = true;
+            this.cb_Area.Location = new System.Drawing.Point(224, 97);
+            this.cb_Area.Name = "cb_Area";
+            this.cb_Area.Size = new System.Drawing.Size(71, 17);
+            this.cb_Area.TabIndex = 8;
+            this.cb_Area.Text = "Enabled?";
+            this.cb_Area.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -178,15 +180,15 @@
             this.tb_AreaHot.Enter += new System.EventHandler(this.tb_AreaHot_Enter);
             this.tb_AreaHot.Leave += new System.EventHandler(this.tb_AreaHot_Leave);
             // 
-            // checkBox1
+            // cb_FullScreen
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(224, 71);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(71, 17);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "Enabled?";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cb_FullScreen.AutoSize = true;
+            this.cb_FullScreen.Location = new System.Drawing.Point(224, 71);
+            this.cb_FullScreen.Name = "cb_FullScreen";
+            this.cb_FullScreen.Size = new System.Drawing.Size(71, 17);
+            this.cb_FullScreen.TabIndex = 5;
+            this.cb_FullScreen.Text = "Enabled?";
+            this.cb_FullScreen.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -203,6 +205,8 @@
             this.tb_FullHot.Name = "tb_FullHot";
             this.tb_FullHot.Size = new System.Drawing.Size(100, 20);
             this.tb_FullHot.TabIndex = 3;
+            this.tb_FullHot.Enter += new System.EventHandler(this.tb_FullHot_Enter);
+            this.tb_FullHot.Leave += new System.EventHandler(this.tb_FullHot_Leave);
             // 
             // groupBox2
             // 
@@ -301,6 +305,7 @@
             this.Name = "FormOptions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormOptions";
+            this.Load += new System.EventHandler(this.FormOptions_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -317,13 +322,13 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tb_FullHot;
-        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox cb_Window;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tb_WinHot;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox cb_Area;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_AreaHot;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cb_FullScreen;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox tb_Password;
         private System.Windows.Forms.Label label7;

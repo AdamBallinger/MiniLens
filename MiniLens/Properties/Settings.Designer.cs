@@ -25,7 +25,7 @@ namespace MiniLens.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("null")]
         public string CaptureDirectory {
             get {
                 return ((string)(this["CaptureDirectory"]));
@@ -37,10 +37,10 @@ namespace MiniLens.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int FullscreenHotkey {
+        [global::System.Configuration.DefaultSettingValueAttribute("116")]
+        public byte FullscreenHotkey {
             get {
-                return ((int)(this["FullscreenHotkey"]));
+                return ((byte)(this["FullscreenHotkey"]));
             }
             set {
                 this["FullscreenHotkey"] = value;
@@ -49,10 +49,10 @@ namespace MiniLens.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int AreaHotkey {
+        [global::System.Configuration.DefaultSettingValueAttribute("117")]
+        public byte AreaHotkey {
             get {
-                return ((int)(this["AreaHotkey"]));
+                return ((byte)(this["AreaHotkey"]));
             }
             set {
                 this["AreaHotkey"] = value;
@@ -61,10 +61,10 @@ namespace MiniLens.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int WindowHotkey {
+        [global::System.Configuration.DefaultSettingValueAttribute("118")]
+        public byte WindowHotkey {
             get {
-                return ((int)(this["WindowHotkey"]));
+                return ((byte)(this["WindowHotkey"]));
             }
             set {
                 this["WindowHotkey"] = value;
@@ -109,7 +109,7 @@ namespace MiniLens.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int CaptureFormat {
             get {
                 return ((int)(this["CaptureFormat"]));

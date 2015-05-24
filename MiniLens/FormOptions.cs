@@ -15,6 +15,9 @@ namespace MiniLens
     {
         bool inTBHotKey = false;
 
+        // Store which text box is currently selected so we know what textbox to enter the key into.
+        TextBox selectedTb = null;
+
         private bool InTBHotKey
         {
             get
@@ -27,6 +30,12 @@ namespace MiniLens
             }
         }
 
+        private TextBox SelectedTb
+        {
+            get { return this.selectedTb; }
+            set { this.selectedTb = value; }
+        }
+
 
         public FormOptions()
         {
@@ -37,7 +46,6 @@ namespace MiniLens
         {
             //TODO: Set settings.
             Settings.Default.CaptureDirectory = tb_Directory.Text;
-            //Settings.Default.FullscreenHotkey = 
             Settings.Default.Save();
             btn_Close_Click(sender, e);
         }
@@ -60,20 +68,61 @@ namespace MiniLens
         {
             if (this.InTBHotKey)
             {
-                Properties.Settings.Default.FullscreenHotkey = (int)keyData;
-                this.tb_FullHot.Text = keyData.ToString();
+                Console.WriteLine((byte)keyData);
+                Properties.Settings.Default.FullscreenHotkey = (byte)keyData; // store byte value of the key
+                this.selectedTb.Text = keyData.ToString();
             }
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void tb_FullHot_Enter(object sender, EventArgs e)
+        {
+            this.InTBHotKey = true;
+            this.SelectedTb = tb_FullHot;
+        }
+
+        private void tb_FullHot_Leave(object sender, EventArgs e)
+        {
+            this.InTBHotKey = false;
         }
 
         private void tb_AreaHot_Enter(object sender, EventArgs e)
         {
             this.InTBHotKey = true;
+            this.SelectedTb = tb_AreaHot;
         }
 
         private void tb_AreaHot_Leave(object sender, EventArgs e)
         {
             this.InTBHotKey = false;
+        }
+
+        private void tb_WinHot_Enter(object sender, EventArgs e)
+        {
+            this.InTBHotKey = true;
+            this.SelectedTb = tb_WinHot;
+        }
+
+        private void tb_WinHot_Leave(object sender, EventArgs e)
+        {
+            this.InTBHotKey = false;
+        }
+
+        private void FormOptions_Load(object sender, EventArgs e)
+        {
+            //Load settings
+            tb_Directory.Text = Settings.Default.CaptureDirectory;
+            tb_FullHot.Text = ((Keys) Settings.Default.FullscreenHotkey).ToString(); // Convert the stored byte value to a key
+            tb_AreaHot.Text = ((Keys)Settings.Default.AreaHotkey).ToString(); // Convert the stored byte value to a key
+            tb_WinHot.Text = ((Keys)Settings.Default.WindowHotkey).ToString(); // Convert the stored byte value to a key
+            cb_FullScreen.Checked = Settings.Default.FullscreenEnabled;
+            cb_Area.Checked = Settings.Default.AreaEnabled;
+            cb_Window.Checked = Settings.Default.WindowEnabled;
+            cb_Format.SelectedIndex = Settings.Default.CaptureFormat;
+
+            tb_Host.Text = Settings.Default.Hostname;
+            tb_Username.Text = Settings.Default.Username;
+            tb_Password.Text = Settings.Default.Password;
         }
     }
 }

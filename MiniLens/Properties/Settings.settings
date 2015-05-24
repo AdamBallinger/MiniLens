@@ -3,16 +3,16 @@
   <Profiles />
   <Settings>
     <Setting Name="CaptureDirectory" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">null</Value>
     </Setting>
-    <Setting Name="FullscreenHotkey" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">-1</Value>
+    <Setting Name="FullscreenHotkey" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">116</Value>
     </Setting>
-    <Setting Name="AreaHotkey" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">-1</Value>
+    <Setting Name="AreaHotkey" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">117</Value>
     </Setting>
-    <Setting Name="WindowHotkey" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">-1</Value>
+    <Setting Name="WindowHotkey" Type="System.Byte" Scope="User">
+      <Value Profile="(Default)">118</Value>
     </Setting>
     <Setting Name="FullscreenEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -24,7 +24,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="CaptureFormat" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">-1</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="Hostname" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
