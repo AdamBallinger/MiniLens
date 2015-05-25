@@ -145,8 +145,10 @@
             // 
             // tb_WinHot
             // 
+            this.tb_WinHot.BackColor = System.Drawing.SystemColors.Window;
             this.tb_WinHot.Location = new System.Drawing.Point(101, 121);
             this.tb_WinHot.Name = "tb_WinHot";
+            this.tb_WinHot.ReadOnly = true;
             this.tb_WinHot.Size = new System.Drawing.Size(100, 20);
             this.tb_WinHot.TabIndex = 9;
             this.tb_WinHot.Enter += new System.EventHandler(this.tb_WinHot_Enter);
@@ -173,8 +175,10 @@
             // 
             // tb_AreaHot
             // 
+            this.tb_AreaHot.BackColor = System.Drawing.SystemColors.Window;
             this.tb_AreaHot.Location = new System.Drawing.Point(101, 95);
             this.tb_AreaHot.Name = "tb_AreaHot";
+            this.tb_AreaHot.ReadOnly = true;
             this.tb_AreaHot.Size = new System.Drawing.Size(100, 20);
             this.tb_AreaHot.TabIndex = 6;
             this.tb_AreaHot.Enter += new System.EventHandler(this.tb_AreaHot_Enter);
@@ -201,8 +205,10 @@
             // 
             // tb_FullHot
             // 
+            this.tb_FullHot.BackColor = System.Drawing.SystemColors.Window;
             this.tb_FullHot.Location = new System.Drawing.Point(101, 69);
             this.tb_FullHot.Name = "tb_FullHot";
+            this.tb_FullHot.ReadOnly = true;
             this.tb_FullHot.Size = new System.Drawing.Size(100, 20);
             this.tb_FullHot.TabIndex = 3;
             this.tb_FullHot.Enter += new System.EventHandler(this.tb_FullHot_Enter);
