@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
@@ -47,6 +48,11 @@ namespace MiniLens
 
         }
 
+        private void btn_Directory_Click(object sender, EventArgs e)
+        {
+            Process.Start(Settings.Default.CaptureDirectory);
+        }
+
         private void btn_Window_Click(object sender, EventArgs e)
         {
 
@@ -56,6 +62,23 @@ namespace MiniLens
         {
             Form form = new FormOptions();
             form.ShowDialog();
+        }
+
+        private void trayIcon_DoubleClick(object sender, EventArgs e)
+        {
+            Console.WriteLine("The main window is now visible.");
+            this.Visible = true;
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void FormMain_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                Console.WriteLine("The main window is now minimised.");
+                trayIcon.ShowBalloonTip(5, "Minimised!", "Double click to reopen.", ToolTipIcon.Info);
+                this.Visible = false;
+            }
         }
 
         // https://msdn.microsoft.com/en-us/library/dd183370(v=vs.85).aspx
@@ -93,23 +116,6 @@ namespace MiniLens
             capture.Save(Settings.Default.CaptureDirectory + "\\" + formattedDt + ".bmp");
             
             capture.Dispose();
-        }
-
-        private void FormMain_Resize(object sender, EventArgs e)
-        {
-            if (this.WindowState == FormWindowState.Minimized)
-            {
-                Console.WriteLine("The main window is now minimised.");
-                trayIcon.ShowBalloonTip(5, "Minimised!", "Double click to reopen.", ToolTipIcon.Info);
-                this.Visible = false;
-            }
-        }
-
-        private void trayIcon_DoubleClick(object sender, EventArgs e)
-        {
-            Console.WriteLine("The main window is now visible.");
-            this.Visible = true;
-            this.WindowState = FormWindowState.Normal;
         }
     }
 }

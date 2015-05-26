@@ -34,6 +34,7 @@
             this.btn_Window = new System.Windows.Forms.Button();
             this.btn_Opt = new System.Windows.Forms.Button();
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.btn_Directory = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Fullscreen
@@ -68,7 +69,7 @@
             // 
             // btn_Opt
             // 
-            this.btn_Opt.Location = new System.Drawing.Point(34, 102);
+            this.btn_Opt.Location = new System.Drawing.Point(34, 131);
             this.btn_Opt.Name = "btn_Opt";
             this.btn_Opt.Size = new System.Drawing.Size(146, 24);
             this.btn_Opt.TabIndex = 3;
@@ -82,11 +83,22 @@
             this.trayIcon.Visible = true;
             this.trayIcon.DoubleClick += new System.EventHandler(this.trayIcon_DoubleClick);
             // 
+            // btn_Directory
+            // 
+            this.btn_Directory.Location = new System.Drawing.Point(34, 102);
+            this.btn_Directory.Name = "btn_Directory";
+            this.btn_Directory.Size = new System.Drawing.Size(146, 23);
+            this.btn_Directory.TabIndex = 4;
+            this.btn_Directory.Text = "Open Picture Folder";
+            this.btn_Directory.UseVisualStyleBackColor = true;
+            this.btn_Directory.Click += new System.EventHandler(this.btn_Directory_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(214, 139);
+            this.ClientSize = new System.Drawing.Size(227, 164);
+            this.Controls.Add(this.btn_Directory);
             this.Controls.Add(this.btn_Opt);
             this.Controls.Add(this.btn_Window);
             this.Controls.Add(this.btn_Area);
@@ -108,6 +120,7 @@
         private System.Windows.Forms.Button btn_Window;
         private System.Windows.Forms.Button btn_Opt;
         private System.Windows.Forms.NotifyIcon trayIcon;
+        private System.Windows.Forms.Button btn_Directory;
     }
 }
 
