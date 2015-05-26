@@ -25,6 +25,9 @@ namespace MiniLens
                 Settings.Default.CaptureDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
                 Settings.Default.Save();
             }
+
+            this.trayIcon.Visible = true;
+            this.trayIcon.Icon = Properties.Resources.trayIcon1;
         }
 
         private void btn_Fullscreen_Click(object sender, EventArgs e)
@@ -62,6 +65,8 @@ namespace MiniLens
         /// <param name="height"></param>
         private void TakeScreenShot(int x, int y, int width, int height)
         {
+            // ToDo: Need to implement image encoding/compression (png, jpg)
+
             Bitmap capture = new Bitmap(width, height, PixelFormat.Format32bppArgb);
             using (Graphics gdest = Graphics.FromImage(capture))
             {
@@ -82,6 +87,23 @@ namespace MiniLens
             capture.Save(Settings.Default.CaptureDirectory + "\\" + formattedDt + ".bmp");
             
             capture.Dispose();
+        }
+
+        private void FormMain_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                Console.WriteLine("The main window is now minimised.");
+                trayIcon.ShowBalloonTip(5, "Minimised!", "Double click to reopen.", ToolTipIcon.Info);
+                this.Visible = false;
+            }
+        }
+
+        private void trayIcon_DoubleClick(object sender, EventArgs e)
+        {
+            Console.WriteLine("The main window is now visible.");
+            this.Visible = true;
+            this.WindowState = FormWindowState.Normal;
         }
     }
 }

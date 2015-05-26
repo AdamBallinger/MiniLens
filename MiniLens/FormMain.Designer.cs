@@ -28,10 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btn_Fullscreen = new System.Windows.Forms.Button();
             this.btn_Area = new System.Windows.Forms.Button();
             this.btn_Window = new System.Windows.Forms.Button();
             this.btn_Opt = new System.Windows.Forms.Button();
+            this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // btn_Fullscreen
@@ -74,6 +76,12 @@
             this.btn_Opt.UseVisualStyleBackColor = true;
             this.btn_Opt.Click += new System.EventHandler(this.btn_Opt_Click);
             // 
+            // trayIcon
+            // 
+            this.trayIcon.Text = "Mini Lens";
+            this.trayIcon.Visible = true;
+            this.trayIcon.DoubleClick += new System.EventHandler(this.trayIcon_DoubleClick);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -88,6 +96,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MiniLens";
             this.Load += new System.EventHandler(this.FormMain_Load);
+            this.Resize += new System.EventHandler(this.FormMain_Resize);
             this.ResumeLayout(false);
 
         }
@@ -98,6 +107,7 @@
         private System.Windows.Forms.Button btn_Area;
         private System.Windows.Forms.Button btn_Window;
         private System.Windows.Forms.Button btn_Opt;
+        private System.Windows.Forms.NotifyIcon trayIcon;
     }
 }
 
