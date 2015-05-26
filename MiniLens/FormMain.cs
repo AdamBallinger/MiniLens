@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 using MiniLens.Properties;
+using System.Runtime.InteropServices;
 
 namespace MiniLens
 {
@@ -35,7 +29,8 @@ namespace MiniLens
 
         private void btn_Fullscreen_Click(object sender, EventArgs e)
         {
-
+            Rectangle screenDim = Screen.PrimaryScreen.Bounds;
+            this.TakeScreenShot(0, 0, screenDim.Width, screenDim.Height);
         }
 
         private void btn_Area_Click(object sender, EventArgs e)
@@ -52,6 +47,41 @@ namespace MiniLens
         {
             Form form = new FormOptions();
             form.ShowDialog();
+        }
+
+        // https://msdn.microsoft.com/en-us/library/dd183370(v=vs.85).aspx
+        [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
+        public static extern int BitBlt(IntPtr hDC, int x, int y, int nWidth, int nHeight, IntPtr hSrcDC, int xSrc, int ySrc, int dwRop);
+
+        /// <summary>
+        /// Takes a screenshot of a given area
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        private void TakeScreenShot(int x, int y, int width, int height)
+        {
+            Bitmap capture = new Bitmap(width, height, PixelFormat.Format32bppArgb);
+            using (Graphics gdest = Graphics.FromImage(capture))
+            {
+                using (Graphics gsrc = Graphics.FromHwnd(IntPtr.Zero))
+                {
+                    IntPtr hSrcDC = gsrc.GetHdc();
+                    IntPtr hDC = gdest.GetHdc();
+                    BitBlt(hDC, x, y, width, height, hSrcDC, x, y, (int)CopyPixelOperation.SourceCopy);
+                    gdest.ReleaseHdc();
+                    gsrc.ReleaseHdc();
+                }
+            }
+
+            DateTime dt = DateTime.Now;
+            string formattedDt = dt.ToString().Replace('/', '-').Replace(':','-');
+            
+            Console.WriteLine("Saving picture to: " + Settings.Default.CaptureDirectory + "\\" + formattedDt + ".bmp");
+            capture.Save(Settings.Default.CaptureDirectory + "\\" + formattedDt + ".bmp");
+            
+            capture.Dispose();
         }
     }
 }
