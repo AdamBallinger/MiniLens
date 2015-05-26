@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.Windows.Forms;
 using MiniLens.Properties;
 using System.Runtime.InteropServices;
+using System.Windows;
 
 namespace MiniLens
 {
@@ -32,8 +33,13 @@ namespace MiniLens
 
         private void btn_Fullscreen_Click(object sender, EventArgs e)
         {
-            Rectangle screenDim = Screen.PrimaryScreen.Bounds;
-            this.TakeScreenShot(0, 0, screenDim.Width, screenDim.Height);
+            Rectangle screenDim = new Rectangle();
+            screenDim.X = Convert.ToInt32(SystemParameters.VirtualScreenLeft);
+            screenDim.Y = Convert.ToInt32(SystemParameters.VirtualScreenTop);
+            screenDim.Width = Convert.ToInt32(SystemParameters.VirtualScreenWidth);
+            screenDim.Height = Convert.ToInt32(SystemParameters.VirtualScreenHeight);
+
+            this.TakeScreenShot(screenDim.X, screenDim.Y, screenDim.Width, screenDim.Height);
         }
 
         private void btn_Area_Click(object sender, EventArgs e)
