@@ -118,7 +118,8 @@
             this.cb_Format.FormattingEnabled = true;
             this.cb_Format.Items.AddRange(new object[] {
             "PNG",
-            "JPEG"});
+            "JPEG",
+            "BMP"});
             this.cb_Format.Location = new System.Drawing.Point(101, 148);
             this.cb_Format.Name = "cb_Format";
             this.cb_Format.Size = new System.Drawing.Size(100, 21);

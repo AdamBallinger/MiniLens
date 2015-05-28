@@ -189,8 +189,23 @@ namespace MiniLens
             DateTime dt = DateTime.Now;
             string formattedDt = dt.ToString().Replace('/', '-').Replace(':', '-');
 
-            Console.WriteLine("Saving picture to: " + Settings.Default.CaptureDirectory + "\\" + formattedDt + ".bmp");
-            capture.Save(Settings.Default.CaptureDirectory + "\\" + formattedDt + ".bmp");
+            Console.WriteLine("Saving picture to: " + Settings.Default.CaptureDirectory + "\\" + formattedDt);
+
+            switch (Settings.Default.CaptureFormat)
+            {
+                case 0:
+                    capture.Save(Settings.Default.CaptureDirectory + "\\" + formattedDt + ".bmp", ImageFormat.Bmp);
+                    break;
+                case 1:
+                    capture.Save(Settings.Default.CaptureDirectory + "\\" + formattedDt + ".jpeg", ImageFormat.Jpeg);
+                    break;
+                case 2:
+                    capture.Save(Settings.Default.CaptureDirectory + "\\" + formattedDt + ".png", ImageFormat.Png);
+                    break;
+                default:
+                    capture.Save(Settings.Default.CaptureDirectory + "\\" + formattedDt + ".bmp", ImageFormat.Bmp);
+                    break;
+            }
 
             capture.Dispose();
         }
