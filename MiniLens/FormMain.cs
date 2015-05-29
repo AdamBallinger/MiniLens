@@ -11,8 +11,66 @@ namespace MiniLens
 {
     public partial class FormMain : Form
     {
+        private const int WH_KEYBOARD_LL = 13;
+        private const int WM_KEYDOWN = 0x0100;
+        private static LowLevelKeyboardProc _proc = HookCallback;
+        private static IntPtr _hookID = IntPtr.Zero;
+
+        private static IntPtr SetHook(LowLevelKeyboardProc proc)
+        {
+            using (Process curProcess = Process.GetCurrentProcess())
+            using (ProcessModule curModule = curProcess.MainModule)
+            {
+                return SetWindowsHookEx(WH_KEYBOARD_LL, proc, GetModuleHandle(curModule.ModuleName), 0);
+            }
+        }
+
+        private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+
+        private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
+        {
+            if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
+            {
+                int vkCode = Marshal.ReadInt32(lParam);
+                Console.WriteLine((Keys)vkCode);
+
+                if (Settings.Default.FullscreenHotkey == (Byte)vkCode)
+                {
+                    Console.WriteLine("Taking full screenshot from Keyboard press.");
+                    FullScreenshot();
+                }
+
+                if (Settings.Default.AreaHotkey == (Byte)vkCode)
+                {
+                    Console.WriteLine("Taking area screenshot from Keyboard press.");
+                    AreaScreenshot();
+                }
+
+                if (Settings.Default.WindowHotkey == (Byte)vkCode)
+                {
+                    Console.WriteLine("Taking window screenshot from Keyboard press.");
+                    WindowScreenshot();
+                }
+            }
+            return CallNextHookEx(_hookID, nCode, wParam, lParam);
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool UnhookWindowsHookEx(IntPtr hhk);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
+
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern IntPtr GetModuleHandle(string lpModuleName);
+
         public FormMain()
         {
+            _hookID = SetHook(_proc);
             InitializeComponent();
         }
 
@@ -32,19 +90,19 @@ namespace MiniLens
         private void btn_Fullscreen_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Taking full screenshot from Main Window");
-            this.FullScreenshot();
+            FullScreenshot();
         }
 
         private void btn_Area_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Taking area screenshot from Main Window");
-            this.AreaScreenshot();
+            AreaScreenshot();
         }
 
         private void btn_Window_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Taking window screenshot from Main Window");
-            this.WindowScreenshot();
+            WindowScreenshot();
         }
 
         private void btn_Directory_Click(object sender, EventArgs e)
@@ -86,19 +144,19 @@ namespace MiniLens
         private void ts_FullScreenShot(Object sender, EventArgs e)
         {
             Console.WriteLine("Taking full screenshot from notification icon tool strip.");
-            this.FullScreenshot();
+            FullScreenshot();
         }
 
         private void ts_AreaScreenShot(Object sender, EventArgs e)
         {
             Console.WriteLine("Taking area screenshot from notification icon tool strip.");
-            this.AreaScreenshot();
+            AreaScreenshot();
         }
 
         private void ts_WindowScreenShot(Object sender, EventArgs e)
         {
             Console.WriteLine("Taking window screenshot from notification icon tool strip.");
-            this.WindowScreenshot();
+            WindowScreenshot();
         }
 
         private void ts_CloseApplication(Object sender, EventArgs e)
@@ -109,13 +167,15 @@ namespace MiniLens
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            UnhookWindowsHookEx(_hookID);
+
             // Ensure that the icon is removed from the system tray
             try
             {
                 if (trayIcon != null)
                 {
                     trayIcon.Visible = false;
-                    trayIcon.Icon = null; 
+                    trayIcon.Icon = null;
                     trayIcon.Dispose();
                     trayIcon = null;
                 }
@@ -129,7 +189,7 @@ namespace MiniLens
         /// <summary>
         /// This is the primary method to call when taking a full screenshot
         /// </summary>
-        private void FullScreenshot()
+        private static void FullScreenshot()
         {
             Rectangle screenDim = new Rectangle();
             screenDim.X = Convert.ToInt32(SystemParameters.VirtualScreenLeft);
@@ -137,13 +197,13 @@ namespace MiniLens
             screenDim.Width = Convert.ToInt32(SystemParameters.VirtualScreenWidth);
             screenDim.Height = Convert.ToInt32(SystemParameters.VirtualScreenHeight);
 
-            this.TakeScreenShot(screenDim.X, screenDim.Y, screenDim.Width, screenDim.Height);
+            TakeScreenShot(screenDim.X, screenDim.Y, screenDim.Width, screenDim.Height);
         }
 
         /// <summary>
         /// This is the primary method to call when taking an area screenshot
         /// </summary>
-        private void AreaScreenshot()
+        private static void AreaScreenshot()
         {
             // ToDo: Insert code here.
             throw new NotImplementedException();
@@ -152,7 +212,7 @@ namespace MiniLens
         /// <summary>
         /// This is the primary method to call when taking a window screenshot.
         /// </summary>
-        private void WindowScreenshot()
+        private static void WindowScreenshot()
         {
             // ToDo: Insert code here.
             throw new NotImplementedException();
@@ -169,7 +229,7 @@ namespace MiniLens
         /// <param name="y">Top</param>
         /// <param name="width">Width</param>
         /// <param name="height">Height</param>
-        private void TakeScreenShot(int x, int y, int width, int height)
+        private static void TakeScreenShot(int x, int y, int width, int height)
         {
             // ToDo: Need to implement image encoding/compression (png, jpg)
 
