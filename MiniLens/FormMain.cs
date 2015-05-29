@@ -34,19 +34,19 @@ namespace MiniLens
                 int vkCode = Marshal.ReadInt32(lParam);
                 Console.WriteLine((Keys)vkCode);
 
-                if (Settings.Default.FullscreenHotkey == (Byte)vkCode)
+                if (Settings.Default.FullscreenHotkey == (Byte)vkCode && Settings.Default.FullscreenEnabled)
                 {
                     Console.WriteLine("Taking full screenshot from Keyboard press.");
                     FullScreenshot();
                 }
 
-                if (Settings.Default.AreaHotkey == (Byte)vkCode)
+                if (Settings.Default.AreaHotkey == (Byte)vkCode && Settings.Default.AreaEnabled)
                 {
                     Console.WriteLine("Taking area screenshot from Keyboard press.");
                     AreaScreenshot();
                 }
 
-                if (Settings.Default.WindowHotkey == (Byte)vkCode)
+                if (Settings.Default.WindowHotkey == (Byte)vkCode && Settings.Default.WindowEnabled)
                 {
                     Console.WriteLine("Taking window screenshot from Keyboard press.");
                     WindowScreenshot();
