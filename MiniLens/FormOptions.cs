@@ -46,6 +46,17 @@ namespace MiniLens
         {
             //TODO: Set settings.
             Settings.Default.CaptureDirectory = tb_Directory.Text;
+            
+            Settings.Default.FullscreenEnabled = cb_FullScreen.Checked;
+            Settings.Default.AreaEnabled = cb_Area.Checked;
+            Settings.Default.WindowEnabled = cb_Window.Checked;
+
+            Settings.Default.CaptureFormat = cb_Format.SelectedIndex;
+
+            Settings.Default.Hostname = tb_Host.Text;
+            Settings.Default.Username = tb_Username.Text;
+            Settings.Default.Password = tb_Password.Text;
+
             Settings.Default.Save();
             btn_Close_Click(sender, e);
         }
