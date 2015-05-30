@@ -248,6 +248,7 @@ namespace MiniLens
 
             DateTime dt = DateTime.Now;
             string formattedDt = dt.ToString().Replace('/', '-').Replace(':', '-');
+            formattedDt += "-" + DateTime.Now.Millisecond.ToString();
 
             Console.WriteLine("Saving picture to: " + Settings.Default.CaptureDirectory + "\\" + formattedDt);
 
