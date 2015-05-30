@@ -38,12 +38,12 @@ namespace MiniLens
             this.btn_Opt = new System.Windows.Forms.Button();
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.btn_Directory = new System.Windows.Forms.Button();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.btn_Directory = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,8 +104,16 @@ namespace MiniLens
             this.toolStripMenuItem3,
             this.toolStripMenuItem4});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(180, 136);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(180, 114);
             this.contextMenuStrip1.Text = "MiniLens";
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(179, 22);
+            this.toolStripMenuItem5.Text = "MiniLens";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.ts_OpenFormMain);
             // 
             // toolStripMenuItem1
             // 
@@ -128,6 +136,14 @@ namespace MiniLens
             this.toolStripMenuItem3.Text = "Window Screenshot";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.ts_WindowScreenShot);
             // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(179, 22);
+            this.toolStripMenuItem4.Text = "Close";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.ts_CloseApplication);
+            // 
             // btn_Directory
             // 
             this.btn_Directory.Location = new System.Drawing.Point(34, 102);
@@ -137,22 +153,6 @@ namespace MiniLens
             this.btn_Directory.Text = "Open Picture Folder";
             this.btn_Directory.UseVisualStyleBackColor = true;
             this.btn_Directory.Click += new System.EventHandler(this.btn_Directory_Click);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(179, 22);
-            this.toolStripMenuItem4.Text = "Close";
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.ts_CloseApplication);
-            // 
-            // toolStripMenuItem5
-            // 
-            this.toolStripMenuItem5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(179, 22);
-            this.toolStripMenuItem5.Text = "MiniLens";
-            this.toolStripMenuItem5.Click += new System.EventHandler(this.ts_OpenFormMain);
             // 
             // FormMain
             // 
@@ -165,6 +165,7 @@ namespace MiniLens
             this.Controls.Add(this.btn_Area);
             this.Controls.Add(this.btn_Fullscreen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MiniLens";
