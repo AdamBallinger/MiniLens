@@ -81,8 +81,11 @@ namespace MiniLens
             //TODO: Default settings check
             if (Settings.Default.CaptureDirectory == "null")
             {
-                Console.WriteLine("Setting default capture directory to user pictures folder.");
-                Settings.Default.CaptureDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+                Console.WriteLine("Setting default capture directory");
+                string folder = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "MiniLens");
+
+                System.IO.Directory.CreateDirectory(folder);
+                Settings.Default.CaptureDirectory = folder;
                 Settings.Default.Save();
             }
         }
