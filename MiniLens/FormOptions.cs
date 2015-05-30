@@ -66,7 +66,6 @@ namespace MiniLens
             this.Close();
         }
 
-
         /// <summary>
         /// Gets all the keys pressed. This helps
         /// with the limitation of TextBox not
@@ -80,7 +79,20 @@ namespace MiniLens
             if (this.InTBHotKey)
             {
                 Console.WriteLine((byte)keyData);
-                Properties.Settings.Default.FullscreenHotkey = (byte)keyData; // store byte value of the key
+
+                if (this.selectedTb == this.tb_FullHot)
+                {
+                    Settings.Default.FullscreenHotkey = (byte)keyData;
+                }
+                else if (this.SelectedTb == this.tb_AreaHot)
+                {
+                    Settings.Default.AreaHotkey = (byte)keyData;
+                }
+                else if (this.SelectedTb == this.tb_WinHot)
+                {
+                    Settings.Default.WindowHotkey = (byte)keyData;
+                }
+
                 this.selectedTb.Text = keyData.ToString();
             }
             return base.ProcessCmdKey(ref msg, keyData);
@@ -123,7 +135,7 @@ namespace MiniLens
         {
             //Load settings
             tb_Directory.Text = Settings.Default.CaptureDirectory;
-            tb_FullHot.Text = ((Keys) Settings.Default.FullscreenHotkey).ToString(); // Convert the stored byte value to a key
+            tb_FullHot.Text = ((Keys)Settings.Default.FullscreenHotkey).ToString(); // Convert the stored byte value to a key
             tb_AreaHot.Text = ((Keys)Settings.Default.AreaHotkey).ToString(); // Convert the stored byte value to a key
             tb_WinHot.Text = ((Keys)Settings.Default.WindowHotkey).ToString(); // Convert the stored byte value to a key
             cb_FullScreen.Checked = Settings.Default.FullscreenEnabled;
