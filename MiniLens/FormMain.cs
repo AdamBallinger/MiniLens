@@ -5,7 +5,7 @@ using System.Drawing.Imaging;
 using System.Windows.Forms;
 using MiniLens.Properties;
 using System.Runtime.InteropServices;
-using System.Windows;
+using System.IO;
 
 namespace MiniLens
 {
@@ -82,9 +82,9 @@ namespace MiniLens
             if (Settings.Default.CaptureDirectory == "null")
             {
                 Console.WriteLine("Setting default capture directory");
-                string folder = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "MiniLens");
+                string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "MiniLens");
 
-                System.IO.Directory.CreateDirectory(folder);
+                Directory.CreateDirectory(folder);
                 Settings.Default.CaptureDirectory = folder;
                 Settings.Default.Save();
             }
@@ -239,24 +239,25 @@ namespace MiniLens
             }
 
             DateTime dt = DateTime.Now;
-            string formattedDt = dt.ToString().Replace('/', '-').Replace(':', '-');
-            formattedDt += "-" + DateTime.Now.Millisecond.ToString();
+            string formattedDt = dt.ToString().Replace('/', '-').Replace(':', '-') + "-" + DateTime.Now.Millisecond.ToString();
 
-            Console.WriteLine("Saving picture to: " + Settings.Default.CaptureDirectory + "\\" + formattedDt);
+            string fileLocation = Settings.Default.CaptureDirectory + Path.DirectorySeparatorChar + formattedDt;
 
+            Console.WriteLine("Saving picture to: " + fileLocation);
+            
             switch (Settings.Default.CaptureFormat)
             {
                 case 0:
-                    capture.Save(Settings.Default.CaptureDirectory + "\\" + formattedDt + ".bmp", ImageFormat.Bmp);
+                    capture.Save(fileLocation + ".bmp", ImageFormat.Bmp);
                     break;
                 case 1:
-                    capture.Save(Settings.Default.CaptureDirectory + "\\" + formattedDt + ".jpeg", ImageFormat.Jpeg);
+                    capture.Save(fileLocation + ".jpeg", ImageFormat.Jpeg);
                     break;
                 case 2:
-                    capture.Save(Settings.Default.CaptureDirectory + "\\" + formattedDt + ".png", ImageFormat.Png);
+                    capture.Save(fileLocation + ".png", ImageFormat.Png);
                     break;
                 default:
-                    capture.Save(Settings.Default.CaptureDirectory + "\\" + formattedDt + ".bmp", ImageFormat.Bmp);
+                    capture.Save(fileLocation + ".bmp", ImageFormat.Bmp);
                     break;
             }
 
