@@ -147,5 +147,14 @@ namespace MiniLens
             tb_Username.Text = Settings.Default.Username;
             tb_Password.Text = Settings.Default.Password;
         }
+
+        private void btn_Dir_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = fbd_CaptureDir.ShowDialog();
+            if (dr == DialogResult.OK)
+            {
+                tb_Directory.Text = fbd_CaptureDir.SelectedPath;
+            }
+        }
     }
 }

@@ -52,6 +52,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Close = new System.Windows.Forms.Button();
+            this.fbd_CaptureDir = new System.Windows.Forms.FolderBrowserDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +72,7 @@
             this.btn_Dir.TabIndex = 1;
             this.btn_Dir.Text = "...";
             this.btn_Dir.UseVisualStyleBackColor = true;
+            this.btn_Dir.Click += new System.EventHandler(this.btn_Dir_Click);
             // 
             // label1
             // 
@@ -347,5 +349,6 @@
         private System.Windows.Forms.ComboBox cb_Format;
         private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.Button btn_Close;
+        private System.Windows.Forms.FolderBrowserDialog fbd_CaptureDir;
     }
 }
