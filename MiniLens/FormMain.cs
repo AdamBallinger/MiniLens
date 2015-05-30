@@ -191,13 +191,7 @@ namespace MiniLens
         /// </summary>
         private static void FullScreenshot()
         {
-            Rectangle screenDim = new Rectangle();
-            screenDim.X = Convert.ToInt32(SystemParameters.VirtualScreenLeft);
-            screenDim.Y = Convert.ToInt32(SystemParameters.VirtualScreenTop);
-            screenDim.Width = Convert.ToInt32(SystemParameters.VirtualScreenWidth);
-            screenDim.Height = Convert.ToInt32(SystemParameters.VirtualScreenHeight);
-
-            TakeScreenShot(screenDim.X, screenDim.Y, screenDim.Width, screenDim.Height);
+            TakeScreenShot(SystemInformation.VirtualScreen);
         }
 
         /// <summary>
@@ -223,27 +217,22 @@ namespace MiniLens
         public static extern int BitBlt(IntPtr hDC, int x, int y, int nWidth, int nHeight, IntPtr hSrcDC, int xSrc, int ySrc, int dwRop);
 
         /// <summary>
-        /// Takes a screenshot of a given area.
+        /// Takes a screenshot of a given rectangle.
         /// </summary>
-        /// <param name="x">Left</param>
-        /// <param name="y">Top</param>
-        /// <param name="width">Width</param>
-        /// <param name="height">Height</param>
-        private static void TakeScreenShot(int x, int y, int width, int height)
+        /// <param name="screenDim">Rectangle of screen capture dimensions</param>
+        private static void TakeScreenShot(Rectangle screenDim)
         {
-            // ToDo: Need to implement image encoding/compression (png, jpg)
+            Bitmap capture = new Bitmap(screenDim.Width, screenDim.Height, PixelFormat.Format32bppArgb);
 
-            Bitmap capture = new Bitmap(width, height, PixelFormat.Format32bppArgb);
-            using (Graphics gdest = Graphics.FromImage(capture))
+            using (Graphics screenGraph = Graphics.FromImage(capture))
             {
-                using (Graphics gsrc = Graphics.FromHwnd(IntPtr.Zero))
-                {
-                    IntPtr hSrcDC = gsrc.GetHdc();
-                    IntPtr hDC = gdest.GetHdc();
-                    BitBlt(hDC, x, y, width, height, hSrcDC, x, y, (int)CopyPixelOperation.SourceCopy);
-                    gdest.ReleaseHdc();
-                    gsrc.ReleaseHdc();
-                }
+                screenGraph.CopyFromScreen(
+                    screenDim.X,
+                    screenDim.Y,
+                    0,
+                    0,
+                    screenDim.Size,
+                    CopyPixelOperation.SourceCopy);
             }
 
             DateTime dt = DateTime.Now;
