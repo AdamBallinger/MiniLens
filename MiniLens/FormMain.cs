@@ -79,15 +79,7 @@ namespace MiniLens
             this.MaximizeBox = false;
 
             //TODO: Default settings check
-            if (Settings.Default.CaptureDirectory == "null")
-            {
-                Console.WriteLine("Setting default capture directory");
-                string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "MiniLens");
-
-                Directory.CreateDirectory(folder);
-                Settings.Default.CaptureDirectory = folder;
-                Settings.Default.Save();
-            }
+            DirectoryIntegrityCheck();
         }
 
         private void btn_Fullscreen_Click(object sender, EventArgs e)
@@ -244,7 +236,9 @@ namespace MiniLens
             string fileLocation = Settings.Default.CaptureDirectory + Path.DirectorySeparatorChar + formattedDt;
 
             Console.WriteLine("Saving picture to: " + fileLocation);
-            
+
+            DirectoryIntegrityCheck();
+
             switch (Settings.Default.CaptureFormat)
             {
                 case 0:
@@ -262,6 +256,22 @@ namespace MiniLens
             }
 
             capture.Dispose();
+        }
+
+        /// <summary>
+        /// Ensure that a folder is setup by checking if it exists and create one if not.
+        /// </summary>
+        private static void DirectoryIntegrityCheck()
+        {
+            if (Settings.Default.CaptureDirectory == "null" || !Directory.Exists(Settings.Default.CaptureDirectory))
+            {
+                Console.WriteLine("Setting default capture directory");
+                string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "MiniLens");
+
+                Directory.CreateDirectory(folder);
+                Settings.Default.CaptureDirectory = folder;
+                Settings.Default.Save();
+            }
         }
     }
 }
