@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using System.IO;
+using MiniLens.Forms;
 using MiniLens.Properties;
 
 namespace MiniLens
@@ -23,7 +24,14 @@ namespace MiniLens
         public static void AreaScreenshot()
         {
             // ToDo: Implement Area Screenshot functionality.
-            throw new NotImplementedException();
+            CaptureArea ca = new CaptureArea();
+
+            DialogResult dr = ca.ShowDialog();
+
+            if (dr == DialogResult.OK)
+            {
+                TakeScreenShot(ca.ScreenArea);
+            }
         }
 
         /// <summary>
