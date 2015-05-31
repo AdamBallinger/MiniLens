@@ -3,29 +3,28 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
-using MiniLens.Properties;
 using System.Runtime.InteropServices;
 using System.IO;
+using MiniLens.Properties;
 
 namespace MiniLens
 {
+    //TODO: Move the logic of this class into a seperate class
     public partial class FormMain : Form
     {
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
-        private static LowLevelKeyboardProc _proc = HookCallback;
+        private static NativeMethods.LowLevelKeyboardProc _proc = HookCallback;
         private static IntPtr _hookID = IntPtr.Zero;
 
-        private static IntPtr SetHook(LowLevelKeyboardProc proc)
+        private static IntPtr SetHook(NativeMethods.LowLevelKeyboardProc proc)
         {
             using (Process curProcess = Process.GetCurrentProcess())
             using (ProcessModule curModule = curProcess.MainModule)
             {
-                return SetWindowsHookEx(WH_KEYBOARD_LL, proc, GetModuleHandle(curModule.ModuleName), 0);
+                return NativeMethods.SetWindowsHookEx(WH_KEYBOARD_LL, proc, NativeMethods.GetModuleHandle(curModule.ModuleName), 0);
             }
         }
-
-        private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
 
         private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
@@ -52,21 +51,8 @@ namespace MiniLens
                     WindowScreenshot();
                 }
             }
-            return CallNextHookEx(_hookID, nCode, wParam, lParam);
+            return NativeMethods.CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc lpfn, IntPtr hMod, uint dwThreadId);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        private static extern bool UnhookWindowsHookEx(IntPtr hhk);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
-
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern IntPtr GetModuleHandle(string lpModuleName);
 
         public FormMain()
         {
@@ -162,7 +148,7 @@ namespace MiniLens
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            UnhookWindowsHookEx(_hookID);
+            NativeMethods.UnhookWindowsHookEx(_hookID);
 
             // Ensure that the icon is removed from the system tray
             try
@@ -194,7 +180,7 @@ namespace MiniLens
         /// </summary>
         private static void AreaScreenshot()
         {
-            // ToDo: Insert code here.
+            // ToDo: Implement Area Screenshot functionality.
             throw new NotImplementedException();
         }
 
@@ -203,13 +189,9 @@ namespace MiniLens
         /// </summary>
         private static void WindowScreenshot()
         {
-            // ToDo: Insert code here.
+            // ToDo: Implement Window Screenshot functionality.
             throw new NotImplementedException();
         }
-
-        // https://msdn.microsoft.com/en-us/library/dd183370(v=vs.85).aspx
-        [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
-        public static extern int BitBlt(IntPtr hDC, int x, int y, int nWidth, int nHeight, IntPtr hSrcDC, int xSrc, int ySrc, int dwRop);
 
         /// <summary>
         /// Takes a screenshot of a given rectangle.

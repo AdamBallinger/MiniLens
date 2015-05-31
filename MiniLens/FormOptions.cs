@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MiniLens.Properties;
 
@@ -46,7 +39,7 @@ namespace MiniLens
         {
             //TODO: Set settings.
             Settings.Default.CaptureDirectory = tb_Directory.Text;
-            
+
             Settings.Default.FullscreenEnabled = cb_FullScreen.Checked;
             Settings.Default.AreaEnabled = cb_Area.Checked;
             Settings.Default.WindowEnabled = cb_Window.Checked;
