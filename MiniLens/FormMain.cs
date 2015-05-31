@@ -102,7 +102,7 @@ namespace MiniLens
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            NativeMethods.UnhookWindowsHookEx(KeyboardHook.HookID);
+            KeyboardHook.Unhook();
 
             // Ensure that the icon is removed from the system tray
             try

@@ -28,8 +28,14 @@ namespace MiniLens
             using (Process curProcess = Process.GetCurrentProcess())
             using (ProcessModule curModule = curProcess.MainModule)
             {
+                Console.WriteLine("Setting hook on: " + curProcess.ProcessName);
                 return NativeMethods.SetWindowsHookEx(WH_KEYBOARD_LL, proc, NativeMethods.GetModuleHandle(curModule.ModuleName), 0);
             }
+        }
+
+        public static void Unhook()
+        {
+            NativeMethods.UnhookWindowsHookEx(HookID);
         }
 
         private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
