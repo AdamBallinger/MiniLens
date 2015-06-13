@@ -50,6 +50,8 @@ namespace MiniLens
             Settings.Default.Username = tb_Username.Text;
             Settings.Default.Password = tb_Password.Text;
 
+            Settings.Default.StartMinimised = cb_Minimised.Checked;
+
             Settings.Default.Save();
             btn_Close_Click(sender, e);
         }
@@ -139,6 +141,8 @@ namespace MiniLens
             tb_Host.Text = Settings.Default.Hostname;
             tb_Username.Text = Settings.Default.Username;
             tb_Password.Text = Settings.Default.Password;
+
+            cb_Minimised.Checked = Settings.Default.StartMinimised;
         }
 
         private void btn_Dir_Click(object sender, EventArgs e)

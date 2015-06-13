@@ -31,7 +31,7 @@
             this.tb_Directory = new System.Windows.Forms.TextBox();
             this.btn_Dir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gb_Capture = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cb_Format = new System.Windows.Forms.ComboBox();
             this.cb_Window = new System.Windows.Forms.CheckBox();
@@ -43,7 +43,7 @@
             this.cb_FullScreen = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tb_FullHot = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gb_Server = new System.Windows.Forms.GroupBox();
             this.tb_Password = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.tb_Username = new System.Windows.Forms.TextBox();
@@ -53,8 +53,11 @@
             this.btn_Save = new System.Windows.Forms.Button();
             this.btn_Close = new System.Windows.Forms.Button();
             this.fbd_CaptureDir = new System.Windows.Forms.FolderBrowserDialog();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.gb_Application = new System.Windows.Forms.GroupBox();
+            this.cb_Minimised = new System.Windows.Forms.CheckBox();
+            this.gb_Capture.SuspendLayout();
+            this.gb_Server.SuspendLayout();
+            this.gb_Application.SuspendLayout();
             this.SuspendLayout();
             // 
             // tb_Directory
@@ -83,28 +86,28 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Capture Directory:";
             // 
-            // groupBox1
+            // gb_Capture
             // 
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.cb_Format);
-            this.groupBox1.Controls.Add(this.cb_Window);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.tb_WinHot);
-            this.groupBox1.Controls.Add(this.cb_Area);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.tb_AreaHot);
-            this.groupBox1.Controls.Add(this.cb_FullScreen);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.tb_FullHot);
-            this.groupBox1.Controls.Add(this.tb_Directory);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btn_Dir);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(351, 187);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Capture Settings";
+            this.gb_Capture.Controls.Add(this.label8);
+            this.gb_Capture.Controls.Add(this.cb_Format);
+            this.gb_Capture.Controls.Add(this.cb_Window);
+            this.gb_Capture.Controls.Add(this.label4);
+            this.gb_Capture.Controls.Add(this.tb_WinHot);
+            this.gb_Capture.Controls.Add(this.cb_Area);
+            this.gb_Capture.Controls.Add(this.label3);
+            this.gb_Capture.Controls.Add(this.tb_AreaHot);
+            this.gb_Capture.Controls.Add(this.cb_FullScreen);
+            this.gb_Capture.Controls.Add(this.label2);
+            this.gb_Capture.Controls.Add(this.tb_FullHot);
+            this.gb_Capture.Controls.Add(this.tb_Directory);
+            this.gb_Capture.Controls.Add(this.label1);
+            this.gb_Capture.Controls.Add(this.btn_Dir);
+            this.gb_Capture.Location = new System.Drawing.Point(12, 66);
+            this.gb_Capture.Name = "gb_Capture";
+            this.gb_Capture.Size = new System.Drawing.Size(351, 187);
+            this.gb_Capture.TabIndex = 3;
+            this.gb_Capture.TabStop = false;
+            this.gb_Capture.Text = "Capture Settings";
             // 
             // label8
             // 
@@ -217,20 +220,20 @@
             this.tb_FullHot.Enter += new System.EventHandler(this.tb_FullHot_Enter);
             this.tb_FullHot.Leave += new System.EventHandler(this.tb_FullHot_Leave);
             // 
-            // groupBox2
+            // gb_Server
             // 
-            this.groupBox2.Controls.Add(this.tb_Password);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.tb_Username);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.tb_Host);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Location = new System.Drawing.Point(12, 205);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(351, 119);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Server Settings";
+            this.gb_Server.Controls.Add(this.tb_Password);
+            this.gb_Server.Controls.Add(this.label7);
+            this.gb_Server.Controls.Add(this.tb_Username);
+            this.gb_Server.Controls.Add(this.label6);
+            this.gb_Server.Controls.Add(this.tb_Host);
+            this.gb_Server.Controls.Add(this.label5);
+            this.gb_Server.Location = new System.Drawing.Point(12, 259);
+            this.gb_Server.Name = "gb_Server";
+            this.gb_Server.Size = new System.Drawing.Size(351, 119);
+            this.gb_Server.TabIndex = 4;
+            this.gb_Server.TabStop = false;
+            this.gb_Server.Text = "Server Settings";
             // 
             // tb_Password
             // 
@@ -283,7 +286,7 @@
             // 
             // btn_Save
             // 
-            this.btn_Save.Location = new System.Drawing.Point(207, 334);
+            this.btn_Save.Location = new System.Drawing.Point(207, 384);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(75, 23);
             this.btn_Save.TabIndex = 5;
@@ -293,7 +296,7 @@
             // 
             // btn_Close
             // 
-            this.btn_Close.Location = new System.Drawing.Point(288, 334);
+            this.btn_Close.Location = new System.Drawing.Point(288, 384);
             this.btn_Close.Name = "btn_Close";
             this.btn_Close.Size = new System.Drawing.Size(75, 23);
             this.btn_Close.TabIndex = 6;
@@ -301,24 +304,47 @@
             this.btn_Close.UseVisualStyleBackColor = true;
             this.btn_Close.Click += new System.EventHandler(this.btn_Close_Click);
             // 
+            // gb_Application
+            // 
+            this.gb_Application.Controls.Add(this.cb_Minimised);
+            this.gb_Application.Location = new System.Drawing.Point(12, 12);
+            this.gb_Application.Name = "gb_Application";
+            this.gb_Application.Size = new System.Drawing.Size(351, 48);
+            this.gb_Application.TabIndex = 7;
+            this.gb_Application.TabStop = false;
+            this.gb_Application.Text = "Application Settings";
+            // 
+            // cb_Minimised
+            // 
+            this.cb_Minimised.AutoSize = true;
+            this.cb_Minimised.Location = new System.Drawing.Point(12, 20);
+            this.cb_Minimised.Name = "cb_Minimised";
+            this.cb_Minimised.Size = new System.Drawing.Size(97, 17);
+            this.cb_Minimised.TabIndex = 0;
+            this.cb_Minimised.Text = "Start Minimised";
+            this.cb_Minimised.UseVisualStyleBackColor = true;
+            // 
             // FormOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(375, 369);
+            this.ClientSize = new System.Drawing.Size(375, 418);
+            this.Controls.Add(this.gb_Application);
             this.Controls.Add(this.btn_Close);
             this.Controls.Add(this.btn_Save);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gb_Server);
+            this.Controls.Add(this.gb_Capture);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormOptions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormOptions";
             this.Load += new System.EventHandler(this.FormOptions_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.gb_Capture.ResumeLayout(false);
+            this.gb_Capture.PerformLayout();
+            this.gb_Server.ResumeLayout(false);
+            this.gb_Server.PerformLayout();
+            this.gb_Application.ResumeLayout(false);
+            this.gb_Application.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -328,7 +354,7 @@
         private System.Windows.Forms.TextBox tb_Directory;
         private System.Windows.Forms.Button btn_Dir;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gb_Capture;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tb_FullHot;
         private System.Windows.Forms.CheckBox cb_Window;
@@ -338,7 +364,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tb_AreaHot;
         private System.Windows.Forms.CheckBox cb_FullScreen;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gb_Server;
         private System.Windows.Forms.TextBox tb_Password;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tb_Username;
@@ -350,5 +376,7 @@
         private System.Windows.Forms.Button btn_Save;
         private System.Windows.Forms.Button btn_Close;
         private System.Windows.Forms.FolderBrowserDialog fbd_CaptureDir;
+        private System.Windows.Forms.GroupBox gb_Application;
+        private System.Windows.Forms.CheckBox cb_Minimised;
     }
 }

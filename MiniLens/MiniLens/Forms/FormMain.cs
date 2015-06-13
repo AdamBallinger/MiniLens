@@ -20,6 +20,11 @@ namespace MiniLens
 
             //TODO: Default settings check
             Screenshot.DirectoryIntegrityCheck();
+
+            if (Settings.Default.StartMinimised)
+            {
+                this.WindowState = FormWindowState.Minimized;
+            }
         }
 
         private void btn_Fullscreen_Click(object sender, EventArgs e)
