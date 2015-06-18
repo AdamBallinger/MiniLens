@@ -24,6 +24,8 @@ namespace MiniLens
             if (Settings.Default.StartMinimised)
             {
                 this.WindowState = FormWindowState.Minimized;
+                this.OnResize(EventArgs.Empty);
+                //this.MinimiseWindow();
             }
         }
 
@@ -68,9 +70,7 @@ namespace MiniLens
         {
             if (this.WindowState == FormWindowState.Minimized)
             {
-                Console.WriteLine("The main window is now minimised.");
-                trayIcon.ShowBalloonTip(5, "Minimised!", "Double click to reopen.", ToolTipIcon.Info);
-                this.Visible = false;
+                this.MinimiseWindow();
             }
         }
 
@@ -124,6 +124,13 @@ namespace MiniLens
             {
                 Console.WriteLine(ex.ToString());
             }
+        }
+
+        private void MinimiseWindow()
+        {
+            Console.WriteLine("The main window is now minimised.");
+            trayIcon.ShowBalloonTip(5, "Minimised!", "Double click to reopen.", ToolTipIcon.Info);
+            this.Visible = false;
         }
     }
 }
