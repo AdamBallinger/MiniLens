@@ -6,7 +6,7 @@ using MiniLens.Properties;
 
 namespace MiniLens
 {
-    internal static class KeyboardHook
+    public static class KeyboardHook
     {
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;

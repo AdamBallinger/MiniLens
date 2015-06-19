@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace MiniLens
 {
-    internal static class NativeMethods
+    public static class NativeMethods
     {
         public delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
 
