@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="MiniLensWPF.MainWindow"
         Width="200" SizeToContent="Height"
-        Icon="trayIcon.png" ResizeMode="CanMinimize" Title="{DynamicResource ApplicationName}" Loaded="Window_Loaded" Closing="Window_Closing" >
+        Icon="../trayIcon.png" ResizeMode="CanMinimize" Title="{DynamicResource ApplicationName}" Loaded="Window_Loaded" Closing="Window_Closing" >
     <StackPanel
 		HorizontalAlignment="Stretch"
 		Margin="5"
