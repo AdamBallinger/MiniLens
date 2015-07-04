@@ -93,7 +93,7 @@ namespace MiniLens
         /// <summary>
         /// Ensure that a folder is setup by checking if it exists and create one if not.
         /// </summary>
-        public static void DirectoryIntegrityCheck()
+        public static bool DirectoryIntegrityCheck()
         {
             if (Settings.Default.CaptureDirectory == "null" || !Directory.Exists(Settings.Default.CaptureDirectory))
             {
@@ -103,7 +103,9 @@ namespace MiniLens
                 Directory.CreateDirectory(folder);
                 Settings.Default.CaptureDirectory = folder;
                 Settings.Default.Save();
+                return true;
             }
+            return false;
         }
     }
 }

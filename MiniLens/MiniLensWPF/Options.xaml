@@ -25,7 +25,7 @@
                         <!--Capture Directory-->
                         <Label Content="Capture Directory:" HorizontalAlignment="Right"/>
                         <TextBox x:Name="tb_Directory" Grid.Column="1" Height="20" VerticalContentAlignment="Center"/>
-                        <Button Grid.Column="2" Height="20" Content="..."/>
+                        <Button x:Name="btn_Dir" Grid.Column="2" Height="20" Content="..." Click="btn_Dir_Click"/>
                         <!--HotKeys-->
                         <Label Grid.Row="1" Content="Fullscreen Hotkey:" HorizontalAlignment="Right"/>
                         <TextBox x:Name="tb_FullHot" Grid.Row="1" Grid.Column="1" Height="20" GotKeyboardFocus="tb_FullHot_GotKeyboardFocus" LostKeyboardFocus="tb_FullHot_LostKeyboardFocus"/>
