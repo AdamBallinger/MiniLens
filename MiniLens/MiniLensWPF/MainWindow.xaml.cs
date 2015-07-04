@@ -57,6 +57,8 @@ namespace MiniLensWPF
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("Opening the Setting page!");
+            Options op = new Options();
+            op.ShowDialog();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
