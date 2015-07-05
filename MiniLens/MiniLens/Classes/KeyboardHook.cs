@@ -13,12 +13,14 @@ namespace MiniLens
         private static NativeMethods.LowLevelKeyboardProc _proc = HookCallback;
         private static IntPtr _hookID = IntPtr.Zero;
 
-        public static IntPtr HookID {
+        public static IntPtr HookID
+        {
             get { return _hookID; }
             set { _hookID = value; }
         }
 
-        public static NativeMethods.LowLevelKeyboardProc Proc {
+        public static NativeMethods.LowLevelKeyboardProc Proc
+        {
             get { return _proc; }
             set { _proc = value; }
         }

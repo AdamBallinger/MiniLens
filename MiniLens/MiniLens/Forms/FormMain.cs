@@ -8,12 +8,23 @@ namespace MiniLens
     //TODO: Move the logic of this class into a seperate class
     public partial class FormMain : Form
     {
+        #region Constructor
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public FormMain()
         {
             KeyboardHook.HookID = KeyboardHook.SetHook(KeyboardHook.Proc);
             InitializeComponent();
         }
+        #endregion Constructor
 
+        #region Events
+        /// <summary>
+        /// Window Load event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormMain_Load(object sender, EventArgs e)
         {
             this.MaximizeBox = false;
@@ -29,30 +40,55 @@ namespace MiniLens
             }
         }
 
+        /// <summary>
+        /// Full Screenshot button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Fullscreen_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Taking full screenshot from Main Window");
             Screenshot.FullScreenshot();
         }
 
+        /// <summary>
+        /// Area Screenshot button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Area_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Taking area screenshot from Main Window");
             Screenshot.AreaScreenshot();
         }
 
+        /// <summary>
+        /// Window Screenshot button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Window_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Taking window screenshot from Main Window");
             Screenshot.WindowScreenshot();
         }
 
+        /// <summary>
+        /// Directory button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Directory_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Opening the image directory");
             Process.Start(Settings.Default.CaptureDirectory);
         }
 
+        /// <summary>
+        /// Options button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_Opt_Click(object sender, EventArgs e)
         {
             Form form = new FormOptions();
@@ -105,6 +141,11 @@ namespace MiniLens
             this.Close();
         }
 
+        /// <summary>
+        /// Window Closing event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             KeyboardHook.Unhook();
@@ -125,12 +166,15 @@ namespace MiniLens
                 Console.WriteLine(ex.ToString());
             }
         }
+        #endregion Events
 
+        #region Methods
         private void MinimiseWindow()
         {
             Console.WriteLine("The main window is now minimised.");
             trayIcon.ShowBalloonTip(5, "Minimised!", "Double click to reopen.", ToolTipIcon.Info);
             this.Visible = false;
         }
+        #endregion Methods
     }
 }

@@ -13,10 +13,10 @@
                 <Setter Property="Margin" Value="5"/>
             </Style>
         </StackPanel.Resources>
-        <Button Content="Fullscreen" HorizontalAlignment="Stretch" VerticalAlignment="Top" Click="Button_Click" />
-        <Button Content="Area" HorizontalAlignment="Stretch" VerticalAlignment="Top" Click="Button_Click_1" />
-        <Button Content="Window" HorizontalAlignment="Stretch" VerticalAlignment="Top" Click="Button_Click_2"/>
-        <Button Content="Open Picture Folder" HorizontalAlignment="Stretch" VerticalAlignment="Top" Click="Button_Click_3"/>
-        <Button Content="Options" HorizontalAlignment="Stretch" VerticalAlignment="Top" Click="Button_Click_4"/>
+        <Button x:Name="btn_Fullscreen" Content="Fullscreen" HorizontalAlignment="Stretch" VerticalAlignment="Top" Click="btn_Fullscreen_Click" />
+        <Button x:Name="btn_Area" Content="Area" HorizontalAlignment="Stretch" VerticalAlignment="Top" Click="btn_Area_Click" />
+        <Button x:Name="btn_Window" Content="Window" HorizontalAlignment="Stretch" VerticalAlignment="Top" Click="btn_Window_Click"/>
+        <Button x:Name="btn_Directory" Content="Open Picture Folder" HorizontalAlignment="Stretch" VerticalAlignment="Top" Click="btn_Directory_Click"/>
+        <Button x:Name="btn_Options" Content="Options" HorizontalAlignment="Stretch" VerticalAlignment="Top" Click="btn_Options_Click"/>
     </StackPanel>
 </Window>
